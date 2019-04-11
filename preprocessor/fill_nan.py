@@ -1,4 +1,4 @@
-'''1.concat train data and test data 
+'''1.concat learn data and test data
    2.use lr to fill null label'''
 
 import pandas as pd
@@ -73,7 +73,7 @@ print(len(tfv.vocabulary_))
 X_all = X_sp
 
 #-----------------------------fill nan-------------------------------------
-'''填充空值'''
+'''c'''
 for lb,idx in [('Education',0),('age',2),('gender',3)]:
     tr = np.where(df_all[lb]!=-1)[0]
     va = np.where(df_all[lb]==-1)[0]

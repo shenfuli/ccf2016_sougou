@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 python fill_nan.py
 python train_d2v_model.py
 python tfidf_lr_stack.py
