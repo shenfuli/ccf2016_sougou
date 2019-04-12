@@ -1,4 +1,4 @@
-'''learn dbow/dm for education/age/gender'''
+'''train dbow/dm for education/age/gender'''
 
 import pandas as pd
 import jieba
@@ -26,7 +26,7 @@ for i,queries in enumerate(df_all.iloc[:200000]['query']):
     doc_f.write('_*{} {}'.format(i,' '.join(words)))
 doc_f.close()
 
-#-------------------------prepare to learn--------------------------------------------
+#-------------------------prepare to train--------------------------------------------
 def run_cmd(cmd):
     print(cmd)
     process = subprocess.Popen(cmd, shell=True,
@@ -52,7 +52,7 @@ d2v = Doc2Vec(dm=0, size=300, negative=5, hs=0, min_count=3, window=30,sample=1e
 doc_list = Doc_list('alldata-id.txt')
 d2v.build_vocab(doc_list)
 
-#-------------------learn dbow doc2vec---------------------------------------------
+#-------------------train dbow doc2vec---------------------------------------------
 df_lb = pd.read_csv(cfg.data_path + 'all_v2.csv',usecols=['Education','age','gender'],nrows=200000)
 ys = {}
 for lb in ['Education','age','gender']:
@@ -74,7 +74,7 @@ d2v = Doc2Vec(dm=1, size=300, negative=5, hs=0, min_count=3, window=10,sample=1e
 doc_list = Doc_list('alldata-id.txt')
 d2v.build_vocab(doc_list)
 
-#---------------learn dm doc2vec-----------------------------------------------------
+#---------------train dm doc2vec-----------------------------------------------------
 for i in range(10):
     print(datetime.now(),'pass:',i)
     run_cmd('shuf alldata-id.txt > alldata-id-shuf.txt')

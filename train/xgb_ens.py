@@ -66,7 +66,7 @@ params = {
 
 dtrain = xgb.DMatrix(X, y)
 dvalid = xgb.DMatrix(X_te, y_te)
-watchlist = [(dtrain, 'learn'), (dvalid, 'eval')]
+watchlist = [(dtrain, 'train'), (dvalid, 'eval')]
 bst = xgb.train(params, dtrain, n_trees, evals=watchlist,feval=xgb_acc_score,maximize=True,
                 early_stopping_rounds=esr, verbose_eval=evals)
 df_sub['Education'] = np.argmax(bst.predict(dvalid),axis=1) + 1
@@ -107,7 +107,7 @@ params = {
 
 dtrain = xgb.DMatrix(X, y)
 dvalid = xgb.DMatrix(X_te, y_te)
-watchlist = [(dtrain, 'learn'), (dvalid, 'eval')]
+watchlist = [(dtrain, 'train'), (dvalid, 'eval')]
 bst = xgb.train(params, dtrain, n_trees, evals=watchlist,feval=xgb_acc_score,maximize=True,
                 early_stopping_rounds=esr, verbose_eval=evals)
 df_sub['age'] = np.argmax(bst.predict(dvalid),axis=1)+1
@@ -149,7 +149,7 @@ params = {
 
 dtrain = xgb.DMatrix(X, y)
 dvalid = xgb.DMatrix(X_te, y_te)
-watchlist = [(dtrain, 'learn'), (dvalid, 'eval')]
+watchlist = [(dtrain, 'train'), (dvalid, 'eval')]
 bst = xgb.train(params, dtrain, n_trees, evals=watchlist,feval=xgb_acc_score,maximize=True,
                 early_stopping_rounds=esr, verbose_eval=evals)
 df_sub['gender'] = np.argmax(bst.predict(dvalid),axis=1)+1
