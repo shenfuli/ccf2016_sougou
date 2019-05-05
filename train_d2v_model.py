@@ -5,10 +5,9 @@ import jieba
 from datetime import datetime
 from collections import namedtuple
 from gensim.models import Doc2Vec
-from collections import OrderedDict
 import subprocess
 from sklearn.linear_model import LogisticRegression
-from sklearn.cross_validation import cross_val_score
+from sklearn.model_selection import cross_val_score
 import codecs
 import cfg
 import numpy as np
@@ -48,7 +47,7 @@ class Doc_list(object):
             tags = [int(words[0][2:])]
             words = words[1:]
             yield SentimentDocument(words,tags)
-d2v = Doc2Vec(dm=0, size=300, negative=5, hs=0, min_count=3, window=30,sample=1e-5,workers=8,alpha=0.025,min_alpha=0.025)
+d2v = Doc2Vec(dm=0, size=200, negative=5, hs=0, min_count=3, window=30,sample=1e-5,workers=8,alpha=0.025,min_alpha=0.025)
 doc_list = Doc_list('alldata-id.txt')
 d2v.build_vocab(doc_list)
 
@@ -70,7 +69,7 @@ for i in range(2):
 d2v.save(cfg.data_path + 'dbow_d2v.model')
 print(datetime.now(),'save done')
 
-d2v = Doc2Vec(dm=1, size=300, negative=5, hs=0, min_count=3, window=10,sample=1e-5,workers=8,alpha=0.05,min_alpha=0.025)
+d2v = Doc2Vec(dm=1, size=200, negative=5, hs=0, min_count=3, window=10,sample=1e-5,workers=8,alpha=0.05,min_alpha=0.025)
 doc_list = Doc_list('alldata-id.txt')
 d2v.build_vocab(doc_list)
 
